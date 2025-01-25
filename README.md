@@ -1,1 +1,1 @@
-# Quart projecte de Desenvolupament d'Interficies - Antoni Maqueda Bestard
+# Desenvolupament d'Interficies - Entrega 4 - Antoni Maqueda
