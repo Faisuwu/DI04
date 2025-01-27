@@ -37,6 +37,8 @@ public class LoginPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Error");
 
+        setBackground(new java.awt.Color(229, 255, 255));
+
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -45,16 +47,16 @@ public class LoginPanel extends javax.swing.JPanel {
 
         jButton1.setText("Log In");
 
-        jLabel1.setText("Error");
+        jLabel1.setText("     ");
 
         jLabel2.setFont(new java.awt.Font("PT Sans Narrow", 1, 36)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Log In");
+        jLabel2.setText("Benvingut");
         jLabel2.setToolTipText("");
 
-        jLabel4.setText("User");
+        jLabel4.setText("Usuari");
 
-        jLabel5.setText("Password");
+        jLabel5.setText("Contrasenya");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
