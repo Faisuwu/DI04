@@ -85,6 +85,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Log In"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
@@ -97,7 +100,7 @@
           <Font name="PT Sans Narrow" size="36" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Benvingut"/>
+        <Property name="text" type="java.lang.String" value="Identifica&apos;t"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>

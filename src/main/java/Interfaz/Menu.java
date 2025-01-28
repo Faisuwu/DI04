@@ -3,7 +3,11 @@
 package Interfaz;
 
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import javax.swing.Timer;
 
 
 public class Menu extends javax.swing.JFrame {
@@ -165,29 +169,47 @@ public class Menu extends javax.swing.JFrame {
         Image imatgeEscalada7 = iconoOriginal7.getImage().getScaledInstance(ample7, alt7, Image.SCALE_SMOOTH);
         jLabel7.setIcon(new ImageIcon(imatgeEscalada7));
         
-        
-        
-        
-
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        transitionToPanel(new UserPanel());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        transitionToPanel(new ExercisePanel());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        transitionToPanel(new WorkoutPanel());
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        transitionToPanel(new LoginPanel());
     }//GEN-LAST:event_jButton4ActionPerformed
 
+private void transitionToPanel(JPanel newPanel) {
+    newPanel.setBounds(getWidth(), 0, getWidth(), getHeight());
+    getContentPane().add(newPanel);
 
+    Timer timer = new Timer(5, new ActionListener() {
+        int xPos = getWidth();
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            xPos -= 10;
+            newPanel.setBounds(xPos, 0, getWidth(), getHeight());
+            repaint();
+
+            if (xPos <= 0) {
+                ((Timer) e.getSource()).stop();
+                getContentPane().removeAll();
+                getContentPane().add(newPanel);
+                revalidate();
+            }
+        }
+    });
+    timer.start();
+}
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -219,7 +241,6 @@ public class Menu extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

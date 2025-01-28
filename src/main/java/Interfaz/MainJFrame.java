@@ -2,7 +2,13 @@
 
 package Interfaz;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 
 public class MainJFrame extends javax.swing.JFrame {
 
@@ -102,7 +108,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void initComponentsPersonalitzat(){
-        
+         
         int ample = jLabel1.getWidth();
         int alt = jLabel1.getHeight();
         ImageIcon iconoOriginal = (ImageIcon) jLabel1.getIcon();
@@ -112,15 +118,32 @@ public class MainJFrame extends javax.swing.JFrame {
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // Crear y mostrar un nuevo JFrame
-        Menu otroJFrame = new Menu();
-        otroJFrame.setVisible(true);
+        JPanel nouPanel = new LoginPanel();
+        nouPanel.setBounds(getWidth(), 0, getWidth(), getHeight());
+        getContentPane().add(nouPanel);
 
-        // Opcional: cerrar el JFrame actual
-        //JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        //currentFrame.dispose();
+        Timer timer = new Timer(5, new ActionListener() {
+            int xPos = getWidth();
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                xPos -= 10;
+                nouPanel.setBounds(xPos, 0, getWidth(), getHeight());
+                repaint();
+
+                if (xPos <= 0) {
+                    ((Timer) e.getSource()).stop();
+                    getContentPane().removeAll();
+                    getContentPane().add(nouPanel);
+                    revalidate();
+                }
+            }
+        });
+        timer.start();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

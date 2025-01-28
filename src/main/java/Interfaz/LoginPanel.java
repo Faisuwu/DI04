@@ -4,6 +4,9 @@
  */
 package Interfaz;
 
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author faisu
@@ -46,12 +49,17 @@ public class LoginPanel extends javax.swing.JPanel {
         });
 
         jButton1.setText("Log In");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("     ");
 
         jLabel2.setFont(new java.awt.Font("PT Sans Narrow", 1, 36)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Benvingut");
+        jLabel2.setText("Identifica't");
         jLabel2.setToolTipText("");
 
         jLabel4.setText("Usuari");
@@ -102,6 +110,21 @@ public class LoginPanel extends javax.swing.JPanel {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        // Obtenim es JFrame contenidor
+        java.awt.Window window = SwingUtilities.getWindowAncestor(this);
+    
+        //Tancam es MainJFrame
+        if (window instanceof JFrame) {
+            JFrame frame = (JFrame) window;
+            frame.dispose();
+        }
+        //Obrim es menú
+        Menu menuFrame = new Menu();
+        menuFrame.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
