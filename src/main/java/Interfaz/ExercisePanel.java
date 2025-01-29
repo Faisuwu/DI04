@@ -31,13 +31,13 @@ public class ExercisePanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {"Basquet", "Esport", "No", "10/01/2025"},
+                {"Futbol", "Esport", "No", "13/01/2025"},
+                {"Abdominals", "Activitat", "Si", "17/01/2025"},
+                {"Flexions", "Activitat", "Si", "29/01/2025"}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nom", "Tipus", "Dificil", "Data"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

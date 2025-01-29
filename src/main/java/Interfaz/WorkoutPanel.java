@@ -110,13 +110,13 @@ public class WorkoutPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {"08/01/2025", "1234", "23", null},
+                {"12/01/2025", "1235", "45", null},
+                {"04/02/2025", "1236", "23", null},
+                {"06/02/2025", "1237", "67", null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Data", "Id", "UsuariId", "Detalls"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

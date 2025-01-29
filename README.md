@@ -15,6 +15,7 @@ Es problema és que era un poc desastre, aixi que he hagut de, primer, arreglar 
 
 L'aplicació ja està terminada. Quan se obri s'aplicació te trobes la finestra d'inici, que t'envia a fer login. Una vegada fet login correctament, se tanca "l'iniciador" i s'obri el JFrame de "l'aplicació", deixant-te a es menú, on pots accedir a les funcionalitats més importants a través de botóns amb icones representatius.
 A través d'aquests icones o en el seu defecte, del menú superior es pot accedir a les diferents funcionalitats de l'aplicació. Está estructurat perque sigui sencill i eficient.
+Per fer login, tenim 3 usuaris al JSON. El mes sencill d'utilitzar és: User: "usuari", Password: "contrasenya".
 
 #C.Criteris introduits a l'aplicació
 

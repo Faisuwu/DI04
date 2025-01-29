@@ -163,7 +163,7 @@ public class UserPanel extends javax.swing.JPanel {
         jLabel2.setToolTipText("");
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "Maria", "Joan", "Toni", "Carles", "Antonia" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
