@@ -1,9 +1,12 @@
 //MainJFrame - Antoni Maqueda Bestard
 
 package Interfaz;
+import java.awt.Component;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -12,7 +15,30 @@ public class MainJFrame extends javax.swing.JFrame {
 
     public MainJFrame() {
         initComponents();
-        initComponentsPersonalitzat();
+        
+        //Aqui he redimensionat la imatge perque és massa gran
+        int ample = jLabel1.getWidth();
+        int alt = jLabel1.getHeight();
+        ImageIcon iconoOriginal = (ImageIcon) jLabel1.getIcon();
+        Image imatgeEscalada = iconoOriginal.getImage().getScaledInstance(ample, alt, Image.SCALE_SMOOTH);
+        jLabel1.setIcon(new ImageIcon(imatgeEscalada));
+        
+        //Aquest codi es per ajustar els JPanels depenent del tamany de la finestra. D'aquesta forma la usabilitat de la interfície no es veu afectada en cas de redimensionament de les finestres.
+        this.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                Component[] componentes = getContentPane().getComponents();
+
+                for (Component c : componentes) {
+                    if (c instanceof JPanel && c.isVisible()) { // Detecta el JPanel actiu
+                        c.setSize(getWidth(), getHeight()); // Ajusta el tamany al del JFrame
+                        c.revalidate();
+                        c.repaint();
+                        break; // Si per casualitat hagués més actius, no continua
+                    }
+                }
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -79,7 +105,7 @@ public class MainJFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(108, 108, 108)
+                .addContainerGap(108, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -90,7 +116,7 @@ public class MainJFrame extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -104,17 +130,10 @@ public class MainJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void initComponentsPersonalitzat(){
-         
-        int ample = jLabel1.getWidth();
-        int alt = jLabel1.getHeight();
-        ImageIcon iconoOriginal = (ImageIcon) jLabel1.getIcon();
-        Image imatgeEscalada = iconoOriginal.getImage().getScaledInstance(ample, alt, Image.SCALE_SMOOTH);
-        jLabel1.setIcon(new ImageIcon(imatgeEscalada));
-
-    }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        //Si es clica el botó, inicia el JPanel de Log In. Realitza una transició personalitzada
         JPanel nouPanel = new LoginPanel();
         nouPanel.setBounds(getWidth(), 0, getWidth(), getHeight());
         getContentPane().add(nouPanel);

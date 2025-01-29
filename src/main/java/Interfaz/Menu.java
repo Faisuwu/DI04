@@ -2,9 +2,12 @@
 
 package Interfaz;
 
+import java.awt.Component;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -142,7 +145,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu5.setText("Altres");
 
-        jMenuItem3.setText("Noticies");
+        jMenuItem3.setText("Feedback");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -236,19 +239,38 @@ public class Menu extends javax.swing.JFrame {
     
     private void initComponentsPersonalitzat(){
         
+        //Escalam les imatges disponibles
         escalarImatge(jLabel4);
         escalarImatge(jLabel5);
         escalarImatge(jLabel6);
         escalarImatge(jLabel7);
+        
+        //Un Menú de per si no té l'actionListener de clicar-hi. Ho he volgut afegir jo de forma manual
         addMenuListener(jMenu2, () -> jMenu2ActionPerformed(new java.awt.event.ActionEvent(jMenu2, ActionEvent.ACTION_PERFORMED, "menu2Selected")));
         addMenuListener(jMenu3, () -> jMenu3ActionPerformed(new java.awt.event.ActionEvent(jMenu3, ActionEvent.ACTION_PERFORMED, "menu3Selected")));
         addMenuListener(jMenu1, () -> jMenu1ActionPerformed(new java.awt.event.ActionEvent(jMenu1, ActionEvent.ACTION_PERFORMED, "menu1Selected")));
         addMenuListener(jMenu4, () -> jMenu4ActionPerformed(new java.awt.event.ActionEvent(jMenu4, ActionEvent.ACTION_PERFORMED, "menu4Selected")));
         addMenuListener(jMenu6, () -> jMenu6ActionPerformed(new java.awt.event.ActionEvent(jMenu6, ActionEvent.ACTION_PERFORMED, "menu6Selected")));
         
-        
+        //Void per redimensionar la pantalla en tots els JPanels actius a aquest JFrame (es de login) 
+        this.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                Component[] componentes = getContentPane().getComponents();
+
+                for (Component c : componentes) {
+                    if (c instanceof JPanel && c.isVisible()) { // Detecta el JPanel actiu
+                        c.setSize(getWidth(), getHeight()); // Ajusta el tamany al del JFrame
+                        c.revalidate();
+                        c.repaint();
+                        break; // Si per casualitat hagués més actius, no continua
+                    }
+                }
+            }
+        });
     }
     
+    //Void per escalar les imatges.
     private void escalarImatge(JLabel label) {
         int ample = label.getWidth();
         int alt = label.getHeight();
@@ -260,6 +282,7 @@ public class Menu extends javax.swing.JFrame {
         }
     }
     
+    //Void per afegir el clic als apartats del menu
     private void addMenuListener(JMenu menu, Runnable action) {
     menu.addMenuListener(new javax.swing.event.MenuListener() {
         @Override
@@ -275,6 +298,7 @@ public class Menu extends javax.swing.JFrame {
     });
 }
     
+    //A continuació venen tots els events dels botons i el menú
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         transitionToPanel(new UserPanel());
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -312,13 +336,14 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu6ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        transitionToPanel(new NoticiesPanel());
+        transitionToPanel(new FeedBackPanel());
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         transitionToPanel(new HorariPanel());
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    //Transició per quan vas a un JPanel desde el Menú.
     private void transitionToPanel(JPanel newPanel) {
         newPanel.setBounds(getWidth(), 0, getWidth(), getHeight());
         getContentPane().add(newPanel);
@@ -343,13 +368,12 @@ public class Menu extends javax.swing.JFrame {
         timer.start();
     }
     
+    //Void per reiniciar l'aplicació, o per fer Log Out, depenent de la situació on s'utilitza
     private void obrirNouJFrame(JFrame nouFrame) {
-       
         dispose();
         nouFrame.setLocationRelativeTo(null);
         nouFrame.setVisible(true);
     }
-
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
