@@ -1,4 +1,4 @@
-//Antoni Maqueda Bestard - DI01 - UsuariService
+//UsuariService.java - Antoni Maqueda
 package service;
 
 import model.Usuari;
@@ -16,4 +16,18 @@ public class UsuariService {
     public List<Usuari> getAllUsers(){
         return DataAccess.getAllUsers();
     }
+    public List<Usuari> getAllUsersByInstructor(int idInstructor){
+        return DataAccess.getAllUsersByInstructor(idInstructor);
+    }
+    public static Usuari validateLogin(String username, String password) {
+        return DataAccess.validateLogin(username, password);
+    }
+
+    public void imprimirUsuaris() {
+        DataAccess.imprimirUsuaris();
+    }
+
+    public Usuari obtenirUsuariPerNom(String username) {
+        return DataAccess.obtenirUsuariPerNom(username);
+    }   
 }

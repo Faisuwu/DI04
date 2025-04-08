@@ -36,3 +36,7 @@ A continuació enumero les funcionalitats noves introduides a l'aplicació segon
 7. He afegit es menú superior per millorar l'interfaç. També he afegit un JavaBean a la pàgina "Horari", l'idea era utilitzar el meu CalendariComponent de DI03, pero no s'implementava correctament al projecte, aixi que he fet una reserca i he implementat aquest javabean desde https://sourceforge.net/projects/jcalendar/. També he afegit un formulari de feedback, que no es plantejava al projecte inicial DI01.
 
 8. Codi amb comentaris. Classes estructurades en paquets segons funcionalitat. Commits sovints.
+
+#D. ACTUALITZACIÓ ABRIL: BASE DE DADES
+
+He actualitzat sa aplicació per incloir la base de dades remota.

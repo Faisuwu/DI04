@@ -1,4 +1,4 @@
-//Antoni Maqueda Bestard - DI01 - BCryptUtils
+//BCryptUtils.java - Antoni Maqueda
 package conection;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;

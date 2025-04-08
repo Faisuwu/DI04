@@ -1,19 +1,12 @@
-//LoginPanel.java - Antoni Maqueda Bestard
+//LoginPanel.java - Antoni Maqueda
 
 package Interfaz;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
-import com.google.gson.reflect.TypeToken;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.reflect.Type;
-import java.util.List;
-import java.util.Map;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import model.Usuari;
+import service.UsuariService;
 
 public class LoginPanel extends javax.swing.JPanel {
 
@@ -104,7 +97,6 @@ public class LoginPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -118,44 +110,25 @@ public class LoginPanel extends javax.swing.JPanel {
             return;
         }
 
-        // Utilitzam inputstream per accedir al json
-        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("conection/baseSimulada.json")) {
-            if (inputStream == null) {
-                JOptionPane.showMessageDialog(this, "No se ha pogu trobar l'arxiu.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
+        // Validar login contra la base de dades
+        Usuari instructor = UsuariService.validateLogin(usernameInput, passwordInput);
+
+        if (instructor != null) {
+            JOptionPane.showMessageDialog(this, "Login correcte. ¡Benvingut " + instructor.getNom() + "!");
+
+            java.awt.Window window = SwingUtilities.getWindowAncestor(this);
+            if (window instanceof JFrame) {
+                ((JFrame) window).dispose();
             }
 
-            Gson gson = new Gson();
+            //int idInstructor = instructor.getId(); // ara sí, obtingut des de la base de dades
+            Menu menuFrame = new Menu(instructor);
+            menuFrame.setVisible(true);
 
-            // Utilitzarem TypeToken per especificar el tipus de dades que manejam
-            Type type = new TypeToken<Map<String, List<Map<String, String>>>>(){}.getType();
-            Map<String, List<Map<String, String>>> usuarisData = gson.fromJson(new InputStreamReader(inputStream), type);
-
-            //Cercam cualque coincidencia d'usuari a l'arxiu JSON per saber si les dades introduides son correctes
-            boolean loginCorrecte = usuarisData.get("usuaris").stream()
-                .anyMatch(usuari -> usernameInput.equals(usuari.get("username")) 
-                        && passwordInput.equals(usuari.get("password")));
-
-            //Si el login es correcte, donam pas a l'aplicació
-            if (loginCorrecte) {
-                JOptionPane.showMessageDialog(this, "Login correcte. ¡Benvingut " + usernameInput + "!");
-                java.awt.Window window = SwingUtilities.getWindowAncestor(this);
-
-                if (window instanceof JFrame) {
-                    JFrame frame = (JFrame) window;
-                    frame.dispose();
-                }
-
-                Menu menuFrame = new Menu();
-                menuFrame.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(this, "Usuari o contrasenya incorrectes", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-
-        } catch (IOException | JsonSyntaxException e) {
-            JOptionPane.showMessageDialog(this, "Error al llegir o analitzar el JSON.", "Error", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuari o contrasenya incorrectes", "Error", JOptionPane.ERROR_MESSAGE);
         }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

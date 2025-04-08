@@ -1,11 +1,23 @@
-//UserPanel.java - Antoni Maqueda Bestard
+//UserPanel.java - Antoni Maqueda
 
 package Interfaz;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import service.UsuariService;
+import model.Usuari;
 
 public class UserPanel extends javax.swing.JPanel {
+    
+    private int instructorId;
+    private Menu parentMenu;
+    private Usuari usuari;
 
-    public UserPanel() {
+    public UserPanel(Usuari instructor, Menu parentMenu) {
+        this.parentMenu = parentMenu;
+        this.instructorId = instructor.getId();
+        this.usuari = instructor;
         initComponents();
+        carregarUsuaris();
     }
 
     @SuppressWarnings("unchecked")
@@ -195,6 +207,51 @@ public class UserPanel extends javax.swing.JPanel {
                 .addContainerGap(47, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void carregarUsuaris() {
+        DefaultListModel<String> model = new DefaultListModel<>();
+        
+        if (usuari.isInstructor()==null){ //El Dr. Otero surt com si no fos instructor a la BBDD, aixi que he de posar aixó
+            System.out.println("(!) Alerta! L'usuari no té assignat si és instructor");
+        }else{
+            if (usuari.isInstructor()==false){ 
+            model.addElement("No tens usuaris perquè no ets instructor");
+            jList1.setModel(model);
+            return;
+            }
+        }
+            
+        //Carregam tots els usuaris de la BBDD
+        UsuariService userService = new UsuariService();
+        List<Usuari> usuaris = userService.getAllUsersByInstructor(instructorId);
+        
+        for (Usuari u : usuaris) {
+            String linea = u.getId() + "\t|\t" + u.getNom(); // ID | Nom
+            model.addElement(linea);
+        }
+
+        jList1.setModel(model);
+
+        //Si es clica, redirigeix a "WorkoutPanel"
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                if (evt.getClickCount() == 1) { // Clic normal
+                    String selectedValue = jList1.getSelectedValue();
+                    String selectedUserName = selectedValue.split("\\|")[1].trim();
+
+
+                    
+                    UsuariService userService = new UsuariService();
+                    Usuari selectedUser = userService.obtenirUsuariPerNom(selectedUserName);
+
+                    // Obri la finestra pasant-li l'usuari
+                    parentMenu.transitionToPanel(new WorkoutPanel(selectedUser,parentMenu));
+
+                   
+                }
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

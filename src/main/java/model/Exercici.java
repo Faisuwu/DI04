@@ -1,9 +1,9 @@
-//Antoni Maqueda Bestard - DI01 - Exercici
+//Exercici.java - Antoni Maqueda
 package model;
 
 public class Exercici {
     
-     private int id;
+    private int id;
     private String name;
     private String description;
     private String imagePath;

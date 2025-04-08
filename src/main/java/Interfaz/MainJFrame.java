@@ -1,4 +1,4 @@
-//MainJFrame - Antoni Maqueda Bestard
+//MainJFrame - Antoni Maqueda
 
 package Interfaz;
 import java.awt.Component;

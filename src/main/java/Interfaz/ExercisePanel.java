@@ -1,16 +1,67 @@
-//ExercisePanel.java - Antoni Maqueda Bestard
+//ExercisePanel.java - Antoni Maqueda
 
 package Interfaz;
 
-//import net.miginfocom.swing.MigLayout;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import model.Exercici;
+import model.Usuari;
+import model.Workout;
+import service.ExerciseService;
 
 public class ExercisePanel extends javax.swing.JPanel {
 
-    public ExercisePanel() {
-        initComponents();
-        //setLayout(new MigLayout()); 
-    }
+    private Workout workout; 
+    private Menu parentMenu;
+    private Usuari usuari;
+    private ArrayList<Exercici> exercicisActuals = new ArrayList<>();
 
+    
+    public ExercisePanel(Workout workout,  Menu parentMenu, Usuari usuari) {
+        this.workout = workout;
+        this.parentMenu = parentMenu;
+        this.usuari = usuari;
+        initComponents();
+        //Si té workout, carregam els exercicis. Sino, avisam de que no hi ha workout seleccionat.
+        if (workout!=null){
+            carregarExercicisDeWorkout(workout);
+        }else{
+            DefaultTableModel modelTaula = new DefaultTableModel();
+            modelTaula.addColumn("Exercici");
+            modelTaula.addRow(new Object[]{ "Cap exercici. Has d'accedir desde Entrenaments (Tornar)"});
+             jTable1.setModel(modelTaula);
+        }
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            //Si clicam damunt, ho editam
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int fila = jTable1.rowAtPoint(evt.getPoint());
+                if (fila >= 0 && fila < exercicisActuals.size()) {
+                    Exercici exerciciSeleccionat = exercicisActuals.get(fila);
+                    ExercisePanelOptions panel = new ExercisePanelOptions(exerciciSeleccionat,workout,parentMenu,usuari);
+                    parentMenu.transitionToPanel(panel);
+                }
+            }
+        });
+    }
+    
+    //Carregam els exercicis des Workout seleccionat
+    private void carregarExercicisDeWorkout(Workout workout) {
+        DefaultTableModel modelTaula = new DefaultTableModel();
+        modelTaula.addColumn("Workout");
+        modelTaula.addColumn("Exercici");
+
+        exercicisActuals = ExerciseService.getExercicisPerWorkout(workout);
+        
+        if (exercicisActuals.isEmpty()) {
+            modelTaula.addRow(new Object[]{ workout.getId(), "(cap exercici)" });
+        } else {
+            for (Exercici exercici : exercicisActuals) {
+                modelTaula.addRow(new Object[]{ workout.getId(), exercici.getNomExercici() });
+            }
+        }
+        jTable1.setModel(modelTaula);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -19,6 +70,8 @@ public class ExercisePanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(229, 255, 255));
 
@@ -42,16 +95,37 @@ public class ExercisePanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jButton1.setBackground(new java.awt.Color(51, 204, 0));
+        jButton1.setText("NOU");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(255, 153, 0));
+        jButton2.setText("Tornar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(75, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(75, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -59,15 +133,42 @@ public class ExercisePanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addGap(45, 45, 45)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //Sense workout no es pot crear cap exercici
+        if (workout == null) {
+            javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "No pots crear un exercici si no tens cap workout seleccionat.",
+                "Error",
+                javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+            return;
+        }
+        Exercici nouExercici = null;
+        ExercisePanelOptions optionsPanel = new ExercisePanelOptions(nouExercici,workout,parentMenu,usuari);
+        parentMenu.transitionToPanel(optionsPanel);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        WorkoutPanel workoutPanel = new WorkoutPanel(usuari,parentMenu);
+        parentMenu.transitionToPanel(workoutPanel);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

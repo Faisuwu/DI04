@@ -1,4 +1,4 @@
-//Menu.java - Antoni Maqueda Bestard
+//Menu.java - Antoni Maqueda
 
 package Interfaz;
 
@@ -14,12 +14,16 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-
+import model.Usuari;
+import java.util.Stack;
 
 public class Menu extends javax.swing.JFrame {
 
+    public static Usuari Instructor;
+    private Stack<JPanel> historialPanels = new Stack<>();
 
-    public Menu() {
+    public Menu(Usuari instructor) {
+        this.Instructor=instructor;
         initComponents();
         initComponentsPersonalitzat();
     }
@@ -45,8 +49,8 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -127,14 +131,6 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Exercicis");
-        jMenu3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu3ActionPerformed(evt);
-            }
-        });
-        jMenuBar1.add(jMenu3);
-
         jMenu4.setText("Entrenaments");
         jMenu4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,6 +138,14 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jMenuBar1.add(jMenu4);
+
+        jMenu3.setText("Exercicis");
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jMenu3);
 
         jMenu5.setText("Altres");
 
@@ -230,7 +234,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         pack();
@@ -268,8 +272,8 @@ public class Menu extends javax.swing.JFrame {
                 }
             }
         });
-    }
     
+    }
     //Void per escalar les imatges.
     private void escalarImatge(JLabel label) {
         int ample = label.getWidth();
@@ -300,15 +304,15 @@ public class Menu extends javax.swing.JFrame {
     
     //A continuació venen tots els events dels botons i el menú
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        transitionToPanel(new UserPanel());
+        transitionToPanel(new UserPanel(Instructor,this));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        transitionToPanel(new ExercisePanel());
+        transitionToPanel(new ExercisePanel(null,this,Instructor));
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        transitionToPanel(new WorkoutPanel());
+        transitionToPanel(new WorkoutPanel(Instructor,this));
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -316,19 +320,19 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-        obrirNouJFrame( new Menu());
+        obrirNouJFrame( new Menu(Instructor));
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
-        transitionToPanel(new UserPanel());
+        transitionToPanel(new UserPanel(Instructor,this));
     }//GEN-LAST:event_jMenu2ActionPerformed
 
     private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
-        transitionToPanel(new ExercisePanel());
+        transitionToPanel(new ExercisePanel(null,this,Instructor));
     }//GEN-LAST:event_jMenu3ActionPerformed
 
     private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
-        transitionToPanel(new WorkoutPanel());
+        transitionToPanel(new WorkoutPanel(Instructor,this));
     }//GEN-LAST:event_jMenu4ActionPerformed
 
     private void jMenu6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu6ActionPerformed
@@ -343,8 +347,9 @@ public class Menu extends javax.swing.JFrame {
         transitionToPanel(new HorariPanel());
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    //Transició per quan vas a un JPanel desde el Menú.
-    private void transitionToPanel(JPanel newPanel) {
+
+     //Transició per quan vas a un JPanel desde el Menú.
+    public void transitionToPanel(JPanel newPanel) {
         newPanel.setBounds(getWidth(), 0, getWidth(), getHeight());
         getContentPane().add(newPanel);
 
@@ -402,7 +407,7 @@ public class Menu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menu().setVisible(true);
+                new Menu(Instructor).setVisible(true);
             }
         });
     }

@@ -7,8 +7,6 @@
         <Property name="text" type="java.lang.String" value="A continuaci&#xf3;, la llista de usuaris que vost&#xe9; te assignats:"/>
       </Properties>
     </Component>
-    <Component class="net.imagenes.JPanelImagenes" name="jPanelImagenes1">
-    </Component>
     <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
     </Component>
   </NonVisualComponents>

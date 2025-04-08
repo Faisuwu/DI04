@@ -1,4 +1,4 @@
-//Antoni Maqueda Bestard - DI01 - Workout
+//Workout.java - Antoni Maqueda
 package model;
 
 public class Workout {

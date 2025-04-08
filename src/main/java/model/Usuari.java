@@ -1,4 +1,4 @@
-//Antoni Maqueda Bestard - DI01 - Usuari
+//Usuari.java - Antoni Maqueda
 package model;
 
 public class Usuari {
@@ -24,7 +24,4 @@ public class Usuari {
     
     public Boolean isInstructor() { return instructor; }
     public void setInstructor (Boolean instructor) { this.instructor = instructor; }
-    
-  
-    
 }

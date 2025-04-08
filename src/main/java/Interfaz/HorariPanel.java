@@ -1,4 +1,4 @@
-//HorariPanel.java - Antoni Maqueda Bestard
+//HorariPanel.java - Antoni Maqueda
 
 package Interfaz;
 

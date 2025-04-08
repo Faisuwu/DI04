@@ -1,4 +1,4 @@
-//Antoni Maqueda Bestard - DI01 - WorkoutService
+//WorkoutService.java - Antoni Maqueda
 package service;
 
 import model.Workout;
@@ -19,42 +19,21 @@ public class WorkoutService {
         return DataAccess.getWorkoutsPerUser(user);
     }
 
+    public Workout getWorkoutsById(int id) {
+        return DataAccess.getWorkoutPerId(id);
+    }
+    
     // Métode per crear un nou workout
     public void createWorkout(Workout workout, ArrayList<Exercici> exercicis) {
         DataAccess.insertWorkout(workout, exercicis);
     }
 
-    // Métode per actualitzar un workout existent
     public void updateWorkout(Workout workout) {
-    
-        String sql = "UPDATE Workouts SET ForDate = ?, UserId = ?, Comments = ? WHERE Id = ?";
-        
-        try (Connection conn = DataAccess.getConnection();
-             PreparedStatement updateStatement = conn.prepareStatement(sql)) {
-            
-            updateStatement.setString(1, workout.getForDate());
-            updateStatement.setInt(2, workout.getIdUsuari());
-            updateStatement.setString(3, workout.getComments());
-            updateStatement.setInt(4, workout.getId());
-            
-            updateStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        DataAccess.updateWorkout(workout);
     }
 
-    // Métode per eliminar un workout específic per id
     public void deleteWorkout(int workoutId) {
-        
-        String sql = "DELETE FROM Workouts WHERE Id = ?";
-        
-        try (Connection conn = DataAccess.getConnection();
-             PreparedStatement deleteStatement = conn.prepareStatement(sql)) {
-            
-            deleteStatement.setInt(1, workoutId);
-            deleteStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        DataAccess.deleteWorkout(workoutId);
     }
+
 }
