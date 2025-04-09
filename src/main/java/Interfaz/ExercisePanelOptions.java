@@ -8,6 +8,13 @@ import model.Usuari;
 import model.Workout;
 import service.ExerciseService;
 
+/**
+ * Panell que permet crear, editar o eliminar un exercici concret dins d’un entrenament.
+ * <p>
+ * El comportament del formulari varia segons si s’està editant un exercici existent
+ * o si se’n crea un de nou.
+ * @author Antoni Maqueda
+ */
 public class ExercisePanelOptions extends javax.swing.JPanel {
     
     private Menu parentMenu;
@@ -15,6 +22,14 @@ public class ExercisePanelOptions extends javax.swing.JPanel {
     private Workout workout;
     private Usuari usuari;
 
+    /**
+     * Constructor del panell d'opcions per un exercici.
+     *
+     * @param exercici    Exercici seleccionat (pot ser null si es vol crear un de nou).
+     * @param workout     Workout al qual pertany l'exercici.
+     * @param parentmenu  Menú principal.
+     * @param usuari      Usuari actiu.
+     */
     public ExercisePanelOptions(Exercici exercici, Workout workout,Menu parentmenu, Usuari usuari) {
         this.exercici = exercici;
         this.workout = workout;
@@ -25,7 +40,7 @@ public class ExercisePanelOptions extends javax.swing.JPanel {
         jLabel11.setText(String.valueOf(workout.getId()));
         jLabel9.setText(exercici != null ? String.valueOf(exercici.getId()) : "Nou");
 
-        //Sa pàgina canviará segons si estás seleccionant un exercici existent o creant un nou. M'encanta com queda
+        //Sa pàgina canviará segons si estás seleccionant un exercici existent o creant un nou.
         if (exercici == null) {
 
             jLabel3.setText("Estás creant un nou exercici per el workout amb id:"+workout.getId());
@@ -51,7 +66,9 @@ public class ExercisePanelOptions extends javax.swing.JPanel {
         
     }
     
-    //El botó per eliminar l'exercici
+    /**
+     * Elimina l’exercici seleccionat si no forma part d’un entrenament tancat.
+     */
     private void eliminarExercici() {
         boolean eliminat = ExerciseService.deleteExercise(exercici.getId());
         if (eliminat) {
@@ -61,7 +78,9 @@ public class ExercisePanelOptions extends javax.swing.JPanel {
         }
     }
 
-    //El botó per editar l'exercici
+    /**
+     * Desa els canvis realitzats a l’exercici actual.
+     */
     private void editarExercici() {
         if (exercici != null) {
             exercici.setNomExercici(jTextField1.getText());
@@ -71,7 +90,9 @@ public class ExercisePanelOptions extends javax.swing.JPanel {
         }
     }
 
-    //El botó per crear l'exercici
+    /**
+     * Crea un nou exercici i l’associa al workout actual.
+     */
     private void crearExercici() {
         Exercici nou = new Exercici();
         nou.setNomExercici(jTextField1.getText());
@@ -272,6 +293,13 @@ public class ExercisePanelOptions extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    /**
+     * Acció del botó "Tornar".
+     * <p>
+     * Torna al panell principal d’exercicis.
+     *
+     * @param evt Esdeveniment de clic del botó.
+     */
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         ExercisePanel exercisePanel = new ExercisePanel(workout,parentMenu,usuari);
         parentMenu.transitionToPanel(exercisePanel);

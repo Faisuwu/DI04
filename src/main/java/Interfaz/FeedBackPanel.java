@@ -4,8 +4,15 @@ package Interfaz;
 
 import javax.swing.JOptionPane;
 
+/**
+ * Formulari que mostra un missatge d'informació o advertència segons si es compleixen certs requisits.
+ * @author Antoni Maqueda
+ */
 public class FeedBackPanel extends javax.swing.JPanel {
 
+    /**
+     * Crea una nova instància de FeedBackPanel i inicialitza els components.
+     */
     public FeedBackPanel() {
         initComponents();
     }
@@ -165,9 +172,14 @@ public class FeedBackPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    /**
+     * Gestiona l'acció del botó d'enviament. 
+     * Mostra un missatge d'advertència si els requisits no s'han acceptat, o un d'èxit si sí.
+     * 
+     * @param evt L'esdeveniment de clic del botó.
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        //Si no s'acepten es requisits, no deixa enviar es missatge
         if (!jRadioButton1.isSelected() || !jRadioButton2.isSelected()) {
             JOptionPane.showMessageDialog(this, "Has de acceptar els requisits", "Advertencia", JOptionPane.WARNING_MESSAGE);
         } else {

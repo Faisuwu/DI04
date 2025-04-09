@@ -17,11 +17,28 @@ import javax.swing.Timer;
 import model.Usuari;
 import java.util.Stack;
 
+/**
+ * Finestra principal que es mostra després del login.
+ * Permet gestionar usuaris, entrenaments, exercicis, i altres funcionalitats relacionades amb l'aplicació.
+ * @author Antoni Maqueda
+ */
 public class Menu extends javax.swing.JFrame {
 
+    /**
+     * Usuari instructor connectat actualment.
+     */
     public static Usuari Instructor;
+    
+    /**
+     * Historial de panells mostrats dins del JFrame.
+     */
     private Stack<JPanel> historialPanels = new Stack<>();
 
+    /**
+     * Crea una nova instància del menú principal per a l'usuari connectat.
+     *
+     * @param instructor L'usuari que ha iniciat sessió i actua com a instructor.
+     */
     public Menu(Usuari instructor) {
         this.Instructor=instructor;
         initComponents();
@@ -240,7 +257,10 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+    /**
+     * Inicialitza components personalitzats del menú: escalat d’imatges,
+     * configuració dels menús i redimensionament dels panells actius.
+     */
     private void initComponentsPersonalitzat(){
         
         //Escalam les imatges disponibles
@@ -274,7 +294,12 @@ public class Menu extends javax.swing.JFrame {
         });
     
     }
-    //Void per escalar les imatges.
+    
+    /**
+     * Escala la imatge d'un JLabel a la mida actual del mateix.
+     *
+     * @param label JLabel que conté la imatge a escalar.
+     */
     private void escalarImatge(JLabel label) {
         int ample = label.getWidth();
         int alt = label.getHeight();
@@ -286,7 +311,12 @@ public class Menu extends javax.swing.JFrame {
         }
     }
     
-    //Void per afegir el clic als apartats del menu
+    /**
+     * Afegeix un listener personalitzat a un JMenu perquè executi una acció en fer clic.
+     *
+     * @param menu JMenu al qual afegir el listener.
+     * @param action Acció a executar quan es selecciona el menú.
+     */
     private void addMenuListener(JMenu menu, Runnable action) {
     menu.addMenuListener(new javax.swing.event.MenuListener() {
         @Override
@@ -302,53 +332,110 @@ public class Menu extends javax.swing.JFrame {
     });
 }
     
-    //A continuació venen tots els events dels botons i el menú
+    /**
+     * Acció del botó per obrir el panell de gestió d'usuaris.
+     *
+     * @param evt Esdeveniment del botó.
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         transitionToPanel(new UserPanel(Instructor,this));
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    /**
+     * Acció del botó per obrir el panell d’exercicis.
+     * 
+     * @param evt Esdeveniment del botó.
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         transitionToPanel(new ExercisePanel(null,this,Instructor));
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    /**
+     * Acció del botó per accedir al panell d'entrenaments.
+     * 
+     * @param evt Esdeveniment del botó.
+     */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         transitionToPanel(new WorkoutPanel(Instructor,this));
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    /**
+     * Acció del botó per tancar sessió i tornar al login.
+     * 
+     * @param evt Esdeveniment del botó.
+     */
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         obrirNouJFrame( new MainJFrame());
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    /**
+     * Acció del botó per tornar al Menú.
+     * 
+     * @param evt Esdeveniment del botó.
+     */
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
         obrirNouJFrame( new Menu(Instructor));
     }//GEN-LAST:event_jMenu1ActionPerformed
 
+    /**
+     * Acció del botó per anar al panell d'usuaris.
+     * 
+     * @param evt Esdeveniment del botó.
+     */
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
         transitionToPanel(new UserPanel(Instructor,this));
     }//GEN-LAST:event_jMenu2ActionPerformed
 
+    /**
+     * Acció del botó per anar al panell de exercicis.
+     * 
+     * @param evt Esdeveniment del botó.
+     */
     private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
         transitionToPanel(new ExercisePanel(null,this,Instructor));
     }//GEN-LAST:event_jMenu3ActionPerformed
 
+    /**
+     * Acció del botó per anar al panell de Entrenaments.
+     * 
+     * @param evt Esdeveniment del botó.
+     */
     private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
         transitionToPanel(new WorkoutPanel(Instructor,this));
     }//GEN-LAST:event_jMenu4ActionPerformed
 
+    /**
+     * Acció del botó per tancar sesió.
+     * 
+     * @param evt Esdeveniment del botó.
+     */
     private void jMenu6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu6ActionPerformed
         obrirNouJFrame( new MainJFrame());
     }//GEN-LAST:event_jMenu6ActionPerformed
 
+    /**
+     * Acció del botó per anar al formulari de feedback
+     * 
+     * @param evt Esdeveniment del botó.
+     */
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         transitionToPanel(new FeedBackPanel());
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    /**
+     * Acció del botó per anar al horari
+     * 
+     * @param evt Esdeveniment del botó.
+     */
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         transitionToPanel(new HorariPanel());
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-
-     //Transició per quan vas a un JPanel desde el Menú.
+    /**
+     * Mostra un nou panell dins del JFrame amb una animació de transició lateral.
+     *
+     * @param newPanel El nou JPanel que es vol mostrar.
+     */
     public void transitionToPanel(JPanel newPanel) {
         newPanel.setBounds(getWidth(), 0, getWidth(), getHeight());
         getContentPane().add(newPanel);
@@ -373,13 +460,23 @@ public class Menu extends javax.swing.JFrame {
         timer.start();
     }
     
-    //Void per reiniciar l'aplicació, o per fer Log Out, depenent de la situació on s'utilitza
+    /**
+     * Reinicia l'aplicació obrint un nou JFrame i tancant l'actual.
+     * S'utilitza per fer log out o tornar a la pantalla inicial.
+     *
+     * @param nouFrame Nou JFrame a mostrar.
+     */
     private void obrirNouJFrame(JFrame nouFrame) {
         dispose();
         nouFrame.setLocationRelativeTo(null);
         nouFrame.setVisible(true);
     }
 
+    /**
+     * Punt d’entrada principal per a executar l’aplicació.
+     *
+     * @param args Arguments de línia de comandes.
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

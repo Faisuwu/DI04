@@ -2,8 +2,15 @@
 
 package Interfaz;
 
+/**
+ * Panell destinat a mostrar o gestionar l'horari d'activitats amb un component de calendari.
+ * @author Antoni Maqueda
+ */
 public class HorariPanel extends javax.swing.JPanel {
 
+    /**
+     * Crea una nova instància de HorariPanel.
+     */
     public HorariPanel() {
         initComponents();
     }

@@ -37,6 +37,22 @@ A continuació enumero les funcionalitats noves introduides a l'aplicació segon
 
 8. Codi amb comentaris. Classes estructurades en paquets segons funcionalitat. Commits sovints.
 
-#D. ACTUALITZACIÓ ABRIL: BASE DE DADES
+# DI06 - Antoni Maqueda Bestard
 
-He actualitzat sa aplicació per incloir la base de dades remota.
+#A. ACTUALITZACIÓ ABRIL: BASE DE DADES
+
+He actualitzat sa aplicació per incloir la base de dades remota. El codi funciona perfectament.
+També he fet canvis a l'interficie, ja que abans com no tenia BBDD afegida, no tenia tot el necessari.
+
+#B. GENERACIÓ DEL JAVADOC
+
+He canviat tots els comentaris i afegit el plugin de javadoc per generar el javadoc correctament.
+La web de documentació, per tant está realitzada i es bastant útil per entendre el codi.
+
+#C. USER MANUAL
+
+-
+
+#D. GITHUB ISSUES
+
+-

@@ -7,10 +7,23 @@ import model.Usuari;
 import model.Workout;
 import service.WorkoutService;
 
+/**
+ * Panell que permet afegir un nou entrenament (Workout) per a un usuari.
+ * <p>
+ * Aquest formulari permet introduir comentaris, especificar el nombre d’exercicis 
+ * i definir els noms base per generar automàticament exercicis associats.
+ * @author Antoni Maqueda
+ */
 public class AddWorkoutPanel extends javax.swing.JPanel {
     private Menu parentMenu;
     private Usuari usuari;
 
+    /**
+     * Constructor del panell AddWorkoutPanel.
+     *
+     * @param parentmenu Referència al menú principal per poder navegar.
+     * @param usuari     Usuari al qual s'assignarà el nou entrenament.
+     */
     public AddWorkoutPanel(Menu parentmenu, Usuari usuari) {
         this.parentMenu = parentmenu;
         this.usuari = usuari;
@@ -18,7 +31,11 @@ public class AddWorkoutPanel extends javax.swing.JPanel {
         initComponentsPersonalitzat();
     }
     
-    //Posam l'id directament perque sigui més facil
+    /**
+     * Inicialitza els components personalitzats del formulari.
+     * <p>
+     * En aquest cas, estableix l’ID de l’usuari actual directament en el camp de text.
+     */
     public void initComponentsPersonalitzat(){
        jTextField2.setText(String.valueOf(usuari.getId()));
     }
@@ -199,6 +216,14 @@ public class AddWorkoutPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Acció associada al botó "Crear entrenament".
+     * <p>
+     * Valida els camps del formulari, genera els exercicis i crea un nou entrenament
+     * associat a l’usuari, emmagatzemant-lo a la base de dades.
+     *
+     * @param evt Esdeveniment de clic del botó.
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
     String userIdStr = jTextField2.getText().trim();
@@ -206,7 +231,7 @@ public class AddWorkoutPanel extends javax.swing.JPanel {
     String nomsExercicisStr = jTextField3.getText().trim();
     int numExercicis;
 
-    // Validacions inicials
+    // Validacions dels camps obligatoris
     if (userIdStr.isEmpty() || comments.isEmpty() || nomsExercicisStr.isEmpty()) {
         javax.swing.JOptionPane.showMessageDialog(this, "Tots els camps són obligatoris.");
         return;
@@ -232,17 +257,17 @@ public class AddWorkoutPanel extends javax.swing.JPanel {
         return;
     }
 
-    // Data actual
+    // Data actual en format ISO
     java.time.LocalDate today = java.time.LocalDate.now();
     String fechaFormateada = today.toString();
 
-    // Cream nou Workout
+    // Creació del nou entrenament
     Workout nouWorkout = new Workout();
     nouWorkout.setIdUsuari(userId);
     nouWorkout.setForDate(fechaFormateada);
     nouWorkout.setComments(comments);
 
-    // Cream la llista d'exercicis
+    // Generació dels exercicis associats
     ArrayList<Exercici> exercicis = new ArrayList<>();
     String[] nomsBase = nomsExercicisStr.split(",");
 
@@ -253,7 +278,7 @@ public class AddWorkoutPanel extends javax.swing.JPanel {
                 Exercici ex = new Exercici();
                 ex.setNomExercici(nomBase + " " + i);
                 ex.setDescripcio("Un exercici básic de"+nomBase);       
-                ex.setDemoFoto("");         
+                ex.setDemoFoto("");    
                 exercicis.add(ex);
             }
         }
@@ -264,7 +289,7 @@ public class AddWorkoutPanel extends javax.swing.JPanel {
         return;
     }
 
-    // Cream el workout a la base de dades
+    // Inserció a la base de dades
     WorkoutService servei = new WorkoutService();
     servei.createWorkout(nouWorkout, exercicis);
 
@@ -287,6 +312,13 @@ public class AddWorkoutPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jTextField3ActionPerformed
 
+    /**
+     * Acció del botó "Tornar enrere".
+     * <p>
+     * Torna al panell anterior (WorkoutPanel) mantenint el context de l’usuari actual.
+     *
+     * @param evt Esdeveniment de clic del botó.
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         WorkoutPanel WorkoutPanel = new WorkoutPanel(usuari,parentMenu);
         parentMenu.transitionToPanel(WorkoutPanel);

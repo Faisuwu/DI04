@@ -11,9 +11,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * Classe per accedir i gestionar dades relacionades amb usuaris, workouts i exercicis
+ * a una base de dades SQL Server.
+ * 
+ * @author Antoni Maqueda / Mike
+ */
 public class DataAccess {
 
-    // Cadena de connexió a Azure SQL Server
+    /** 
+     * Cadena de connexió a Azure SQL Server 
+     */
     private static final String CONNECTION_STRING = 
         "jdbc:sqlserver://simulapsqlserver.database.windows.net:1433;"
         + "database=simulapdb25;"
@@ -24,6 +32,11 @@ public class DataAccess {
         + "hostNameInCertificate=*.database.windows.net;"
         + "loginTimeout=30;";
 
+    /**
+     * Obté una connexió a la base de dades.
+     * 
+     * @return Connexió JDBC o null si hi ha un error.
+     */
     public static Connection getConnection() {
         Connection connection = null;
         try {
@@ -34,6 +47,12 @@ public class DataAccess {
         return connection;
     }
 
+    /**
+     * Cerca un usuari a partir del seu email.
+     * 
+     * @param email Email de l’usuari a cercar.
+     * @return Objecte Usuari o null si no es troba.
+     */
     public static Usuari getUser(String email) {
         Usuari user = null;
         String sql = "SELECT * FROM Usuaris WHERE Email = ?";
@@ -54,6 +73,11 @@ public class DataAccess {
         return user;
     }
 
+    /**
+     * Obté tots els usuaris que no són instructors.
+     * 
+     * @return Llista d’usuaris.
+     */
     public static ArrayList<Usuari> getAllUsers() {
         ArrayList<Usuari> usuaris = new ArrayList<>();
         String sql = "SELECT * FROM Usuaris WHERE Instructor=0";
@@ -76,6 +100,13 @@ public class DataAccess {
         return usuaris;
     }
     
+    /**
+     * Valida l’inici de sessió d’un usuari amb el seu correu i contrasenya.
+     * 
+     * @param username Email de l’usuari.
+     * @param password Contrasenya en text pla.
+     * @return Objecte Usuari si les credencials són vàlides, null en cas contrari.
+     */
     public static Usuari validateLogin(String username, String password) {
         String query = "SELECT * FROM Usuaris WHERE Email = ?";
 
@@ -107,6 +138,12 @@ public class DataAccess {
         return null; // Usuari no trobat o contrasenya incorrecta
     }
 
+    /**
+     * Obté tots els usuaris assignats a un instructor.
+     * 
+     * @param idInstructor ID de l’instructor.
+     * @return Llista d’usuaris.
+     */
     public static ArrayList<Usuari> getAllUsersByInstructor(int idInstructor) {
         ArrayList<Usuari> usuaris = new ArrayList<>();
         String sql = "SELECT * FROM Usuaris WHERE AssignedInstructor=?";
@@ -129,6 +166,12 @@ public class DataAccess {
         return usuaris;
     }
 
+    /**
+     * Obté tots els workouts associats a un usuari.
+     * 
+     * @param user Usuari del qual es volen obtenir els workouts.
+     * @return Llista de workouts.
+     */
     public static ArrayList<Workout> getWorkoutsPerUser(Usuari user) {
         ArrayList<Workout> workouts = new ArrayList<>();
         String sql = "SELECT Workouts.Id, Workouts.ForDate, Workouts.UserId, Workouts.Comments"
@@ -153,6 +196,13 @@ public class DataAccess {
         return workouts;
 
     }
+    
+    /**
+     * Obté un workout a partir del seu ID.
+     * 
+     * @param id ID del workout.
+     * @return Workout trobat o null.
+     */
     public static Workout getWorkoutPerId(int id) {
         Workout work = null;
         String sql = "SELECT * FROM Workouts WHERE id = ?";
@@ -172,6 +222,12 @@ public class DataAccess {
         return work;
     }
 
+    /**
+     * Obté tots els exercicis associats a un workout.
+     * 
+     * @param workout Workout del qual es volen obtenir exercicis.
+     * @return Llista d’exercicis.
+     */
     public static ArrayList<Exercici> getExercicisPerWorkout(Workout workout) {
         ArrayList<Exercici> exercicis = new ArrayList<>();
         String sql = "SELECT ExercicisWorkouts.IdExercici,"
@@ -197,6 +253,11 @@ public class DataAccess {
         return exercicis;
     }
 
+    /**
+     * Obté tots els exercicis existents.
+     * 
+     * @return Llista d’exercicis.
+     */
     public static ArrayList<Exercici> getAllExercicis() {
         ArrayList<Exercici> exercicis = new ArrayList<>();
         String sql = "SELECT Id, Exercicis.NomExercici, Exercicis.Descripcio, Exercicis.DemoFoto"
@@ -220,6 +281,12 @@ public class DataAccess {
         return exercicis;
     }
 
+    /**
+     * Registra un nou usuari a la base de dades.
+     *
+     * @param u L'objecte Usuari amb les dades del nou usuari.
+     * @return L'identificador del nou usuari si s'ha inserit correctament, 0 en cas contrari.
+     */
     public static int registerUser(Usuari u) {
         String sql = "INSERT INTO dbo.Usuaris (Nom, Email, PasswordHash, Instructor)"
                 + " VALUES (?,?,?,?)"
@@ -238,6 +305,13 @@ public class DataAccess {
         return 0;
     }
 
+    /**
+     * Insereix un workout i els exercicis associats a la base de dades.
+     * Si algun exercici no té ID, primer s'insereix a la base de dades.
+     *
+     * @param w L'objecte Workout a inserir.
+     * @param exercicis Llista d'exercicis associats al workout.
+     */
     public static void insertWorkout(Workout w, ArrayList<Exercici> exercicis) {
         
         for (Exercici e : exercicis) {
@@ -252,6 +326,12 @@ public class DataAccess {
         insertExercisesPerWorkout(newWorkoutId, exercicis);
     }
     
+    /**
+     * Insereix un exercici a la base de dades.
+     *
+     * @param e L'exercici a inserir.
+     * @return L'identificador generat de l'exercici o -1 si ha fallat.
+     */
     public static int insertExercici(Exercici e) {
         String sql = "INSERT INTO dbo.Exercicis (NomExercici, Descripcio, DemoFoto) VALUES (?, ?, ?)";
 
@@ -276,6 +356,12 @@ public class DataAccess {
         return -1;
     }
 
+    /**
+     * Insereix un workout a la taula Workouts i retorna l'ID generat.
+     *
+     * @param w El workout a inserir.
+     * @return L'identificador del workout o 0 si hi ha hagut algun error.
+     */
     private static int insertToWorkoutTable(Workout w) {
         String sql = "INSERT INTO dbo.Workouts (ForDate, UserId, Comments)"
                 + " VALUES (?,?,?)";
@@ -301,6 +387,13 @@ public class DataAccess {
         return 0;
     }
 
+    /**
+     * Insereix una llista d'exercicis a la taula ExercicisWorkouts per a un workout donat.
+     *
+     * @param wId L'identificador del workout.
+     * @param exercicis La llista d'exercicis a associar.
+     * @return El nombre d'exercicis inserits correctament.
+     */
     private static int insertExercisesPerWorkout(int wId, ArrayList<Exercici> exercicis) {
         for(Exercici e: exercicis) {
             int rowsAffected = insertExerciciPerWorkout(wId, e);
@@ -311,6 +404,13 @@ public class DataAccess {
         return exercicis.size();
     }
 
+    /**
+     * Insereix la relació entre un exercici i un workout a la taula ExercicisWorkouts.
+     *
+     * @param wId L'identificador del workout.
+     * @param e L'exercici a associar.
+     * @return Nombre de files afectades (1 si és correcte, 0 si falla).
+     */
     private static int insertExerciciPerWorkout(int wId, Exercici e) {
         String sql = "INSERT INTO dbo.ExercicisWorkouts (IdWorkout, IdExercici)"
                 + " VALUES (?,?)";
@@ -324,6 +424,12 @@ public class DataAccess {
         }
         return 0;
     }
+    
+    /**
+     * Actualitza les dades d'un exercici existent a la base de dades.
+     *
+     * @param e L'exercici amb les dades actualitzades.
+     */
     public static void updateExercici(Exercici e) {
         String sql = "UPDATE dbo.Exercicis SET NomExercici = ?, Descripcio = ?, DemoFoto = ? WHERE Id = ?";
 
@@ -342,6 +448,12 @@ public class DataAccess {
         
     }
     
+    /**
+     * Elimina un exercici de la base de dades, sempre que no estigui associat a cap workout.
+     *
+     * @param idExercici L'identificador de l'exercici a eliminar.
+     * @return {@code true} si s'ha eliminat correctament, {@code false} si no s'ha pogut eliminar.
+     */
     public static boolean deleteExercici(int idExercici) {
         String sql = "DELETE FROM dbo.Exercicis WHERE Id = ?";
 
@@ -364,7 +476,12 @@ public class DataAccess {
         return false;
     }
 
-    
+    /**
+     * Afegeix un nou exercici a la base de dades i l'associa a un workout existent.
+     *
+     * @param e L'exercici a afegir.
+     * @param workoutId L'identificador del workout al qual s'ha d'associar.
+     */
     public static void addExerciciToWorkout(Exercici e, int workoutId) {
         int exerciciId = insertExercici(e);
         if (exerciciId > 0) {
@@ -372,7 +489,13 @@ public class DataAccess {
             insertExerciciPerWorkout(workoutId, e);
         }
     }
-    // Actualitzar un workout. No l'utilitz
+    
+    /**
+     * Actualitza les dades d'un workout a la base de dades.
+     * Aquest mètode no està actualment en ús.
+     *
+     * @param workout El workout amb les dades actualitzades.
+     */
     public static void updateWorkout(Workout workout) {
         String sql = "UPDATE Workouts SET ForDate = ?, UserId = ?, Comments = ? WHERE Id = ?";
 
@@ -390,7 +513,12 @@ public class DataAccess {
         }
     }
 
-    // Eliminar un workout. No l'utilitz
+    /**
+     * Elimina un workout de la base de dades segons el seu identificador.
+     * Aquest mètode no està actualment en ús.
+     *
+     * @param workoutId L'identificador del workout a eliminar.
+     */
     public static void deleteWorkout(int workoutId) {
         String sql = "DELETE FROM Workouts WHERE Id = ?";
 
@@ -404,7 +532,10 @@ public class DataAccess {
         }
     }
     
-    // Métode que he utilitzat a debug per imprimir usuaris
+    /**
+     * Mètode auxiliar per imprimir per consola tots els usuaris de la base de dades.
+     * Útil per a finalitats de depuració.
+     */
     public static void imprimirUsuaris() {
         String query = "SELECT * FROM Usuaris";
 
@@ -427,7 +558,12 @@ public class DataAccess {
         }
     }
 
-    // Obtenir un usuari per el seu nom
+    /**
+     * Obté un usuari de la base de dades segons el seu nom.
+     *
+     * @param username El nom de l'usuari que es vol buscar.
+     * @return L'usuari trobat o {@code null} si no existeix.
+     */
     public static Usuari obtenirUsuariPerNom(String username) {
         String query = "SELECT * FROM Usuaris WHERE Nom = ?";
 

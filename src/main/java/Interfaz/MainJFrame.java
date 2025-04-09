@@ -11,8 +11,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+/**
+ * Classe principal de l'aplicació que carrega el panell de login en una finestra JFrame.
+ * @author Antoni Maqueda
+ */
 public class MainJFrame extends javax.swing.JFrame {
 
+    /**
+     * Crea una nova instància de MainJFrame i carrega el LoginPanel com a vista inicial.
+     */
     public MainJFrame() {
         initComponents();
         
@@ -130,10 +137,12 @@ public class MainJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+    /**
+     * Inicia el JPanel de Log In realitzant una transició personalitzada
+     * @param evt Esdeveniment de clic del botó.
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        //Si es clica el botó, inicia el JPanel de Log In. Realitza una transició personalitzada
         JPanel nouPanel = new LoginPanel();
         nouPanel.setBounds(getWidth(), 0, getWidth(), getHeight());
         getContentPane().add(nouPanel);
@@ -158,8 +167,11 @@ public class MainJFrame extends javax.swing.JFrame {
         timer.start();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    
-    
+    /**
+     * Punt d'entrada principal de l'aplicació.
+     * 
+     * @param args Arguments de línia de comandes (no s'utilitzen).
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

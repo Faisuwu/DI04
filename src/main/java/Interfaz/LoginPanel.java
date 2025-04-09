@@ -8,8 +8,15 @@ import javax.swing.SwingUtilities;
 import model.Usuari;
 import service.UsuariService;
 
+/**
+ * Panell de login que valida les credencials de l'usuari.
+ * @author Antoni Maqueda
+ */
 public class LoginPanel extends javax.swing.JPanel {
 
+    /**
+     * Crea una nova instància de LoginPanel i inicialitza els components.
+     */
     public LoginPanel() {
         initComponents();
     }
@@ -99,6 +106,12 @@ public class LoginPanel extends javax.swing.JPanel {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    /**
+     * Gestiona l'acció del botó de login.
+     * Comprova que els camps no estiguin buits i valida l'usuari amb la base de dades.
+     * 
+     * @param evt L'esdeveniment de clic del botó.
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         String usernameInput = jTextField1.getText();

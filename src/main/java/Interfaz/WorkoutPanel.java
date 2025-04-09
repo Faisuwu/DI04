@@ -9,11 +9,21 @@ import model.Workout;
 import model.Usuari;
 import service.ExerciseService;
 
+/**
+ * Panell que mostra els entrenaments (workouts) associats a un usuari.
+ * @author Antoni Maqueda
+ */
 public class WorkoutPanel extends javax.swing.JPanel {
 
     Usuari Instructor;
     private Menu parentMenu;
     
+    /**
+     * Crea el panell d'entrenaments per a l'instructor especificat.
+     *
+     * @param instructor Usuari instructor.
+     * @param parentMenu Referència al menú principal.
+     */
     public WorkoutPanel(Usuari instructor, Menu parentMenu) {
         this.Instructor = instructor;
         this.parentMenu = parentMenu;
@@ -173,12 +183,21 @@ public class WorkoutPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Acció del botó per afegir un nou entrenament.
+     *
+     * @param evt Esdeveniment del botó.
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         AddWorkoutPanel addWorkoutPanel = new AddWorkoutPanel(parentMenu,Instructor);
         parentMenu.transitionToPanel(addWorkoutPanel);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    //Carregam els workouts de la BBDD amb aquesta void. Si no hi ha workouts a l'usuari, o accedeixes desde el perfil t'ho diu.
+    /**
+     * Carrega i mostra els entrenaments de la base de dades.
+     * Afegeix funcionalitat per obrir el panell d’exercicis corresponent a cada entrenament.
+     * Si L'usuari no té Workouts o has entrat com a instructor, t'ho diu
+     */
     private void carregarWorkouts() {
         WorkoutService wservice = new WorkoutService();
 

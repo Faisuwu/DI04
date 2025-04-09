@@ -6,12 +6,22 @@ import javax.swing.DefaultListModel;
 import service.UsuariService;
 import model.Usuari;
 
+/**
+ * Panell que mostra la llista d’usuaris assignats a un instructor.
+ * @author Antoni Maqueda
+ */
 public class UserPanel extends javax.swing.JPanel {
     
     private int instructorId;
     private Menu parentMenu;
     private Usuari usuari;
 
+    /**
+     * Crea un panell amb la llista d'usuaris per a l'instructor connectat.
+     *
+     * @param instructor L'usuari instructor.
+     * @param parentMenu Referència al menú principal per fer transicions de panell.
+     */
     public UserPanel(Usuari instructor, Menu parentMenu) {
         this.parentMenu = parentMenu;
         this.instructorId = instructor.getId();
@@ -208,6 +218,11 @@ public class UserPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Carrega i mostra els usuaris assignats a l’instructor.
+     * Si l'usuari no és instructor, es mostra un missatge.
+     * Afegeix funcionalitat per obrir el panell d'entrenaments per cada usuari seleccionat.
+     */
     private void carregarUsuaris() {
         DefaultListModel<String> model = new DefaultListModel<>();
         
