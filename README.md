@@ -1,4 +1,4 @@
-# DI04 - Antoni Maqueda Bestard
+DI04 - Antoni Maqueda Bestard
 
 #A.Problemes Inicials
 
