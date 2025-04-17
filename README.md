@@ -1,6 +1,6 @@
-DI04 - Antoni Maqueda Bestard
+# DI04 - Antoni Maqueda Bestard
 
-#A.Problemes Inicials
+# A.Problemes Inicials
 
 Per fer aquest projecte, he utilitzat es projecte que vaig lliurar a DI-01.
 Es problema és que era un poc desastre, aixi que he hagut de, primer, arreglar algunes coses:
