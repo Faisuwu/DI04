@@ -11,13 +11,13 @@ Es problema és que era un poc desastre, aixi que he hagut de, primer, arreglar 
 
 2. El projecte que vaig entregar a DI01 no utilitzava el designer de netbeans, per lo que he fet desde 0 l'interficie de l'aplicació utilitzant-ho. Cal destacar que degut al problema inicial de la base de dades, coses com les llistes i les taules no funcionen, però están creades i posicionades segons el disseny de l'interficie
 
-#B.Descripció de l'aplicació
+# B.Descripció de l'aplicació
 
 L'aplicació ja està terminada. Quan se obri s'aplicació te trobes la finestra d'inici, que t'envia a fer login. Una vegada fet login correctament, se tanca "l'iniciador" i s'obri el JFrame de "l'aplicació", deixant-te a es menú, on pots accedir a les funcionalitats més importants a través de botóns amb icones representatius.
 A través d'aquests icones o en el seu defecte, del menú superior es pot accedir a les diferents funcionalitats de l'aplicació. Está estructurat perque sigui sencill i eficient.
 Per fer login, tenim 3 usuaris al JSON. El mes sencill d'utilitzar és: User: "usuari", Password: "contrasenya".
 
-#C.Criteris introduits a l'aplicació
+# C.Criteris introduits a l'aplicació
 
 A continuació enumero les funcionalitats noves introduides a l'aplicació segons els criteris establerts a l'enunciat
 
@@ -39,20 +39,20 @@ A continuació enumero les funcionalitats noves introduides a l'aplicació segon
 
 # DI06 - Antoni Maqueda Bestard
 
-#A. ACTUALITZACIÓ ABRIL: BASE DE DADES
+# A. ACTUALITZACIÓ ABRIL: BASE DE DADES
 
 He actualitzat sa aplicació per incloir la base de dades remota. El codi funciona perfectament.
 També he fet canvis a l'interficie, ja que abans com no tenia BBDD afegida, no tenia tot el necessari.
 
-#B. GENERACIÓ DEL JAVADOC
+# B. GENERACIÓ DEL JAVADOC
 
 He canviat tots els comentaris i afegit el plugin de javadoc per generar el javadoc correctament.
 La web de documentació, per tant está realitzada i es bastant útil per entendre el codi.
 
-#C. USER MANUAL
+# C. USER MANUAL
 
 -
 
-#D. GITHUB ISSUES
+# D. GITHUB ISSUES
 
 -
