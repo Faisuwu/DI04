@@ -243,32 +243,32 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/images/exercici.png"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="getIcon(&quot;/images/exercici.png&quot;)" type="code"/>
         </Property>
         <Property name="text" type="java.lang.String" value="   "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/images/entrenament.png"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="getIcon(&quot;/images/entrenament.png&quot;)" type="code"/>
         </Property>
         <Property name="text" type="java.lang.String" value="   "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/images/logout.png"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="getIcon(&quot;/images/logout.png&quot;)" type="code"/>
         </Property>
         <Property name="text" type="java.lang.String" value="   "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/images/usuari.png"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="getIcon(&quot;/images/usuari.png&quot;)" type="code"/>
         </Property>
         <Property name="text" type="java.lang.String" value="   "/>
       </Properties>

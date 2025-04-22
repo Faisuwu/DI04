@@ -119,16 +119,16 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel3.setText("                Per anar a la secció corresponent, clica al botó que calgui");
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/images/exercici.png")); // NOI18N
+        jLabel4.setIcon(getIcon("/images/exercici.png"));
         jLabel4.setText("   ");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/images/entrenament.png")); // NOI18N
+        jLabel5.setIcon(getIcon("/images/entrenament.png"));
         jLabel5.setText("   ");
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/images/logout.png")); // NOI18N
+        jLabel6.setIcon(getIcon("/images/logout.png"));
         jLabel6.setText("   ");
 
-        jLabel7.setIcon(new javax.swing.ImageIcon("/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/images/usuari.png")); // NOI18N
+        jLabel7.setIcon(getIcon("/images/usuari.png"));
         jLabel7.setText("   ");
 
         jMenu1.setText("Inici");
@@ -257,6 +257,13 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Void per obtenir l'imatge com a resource
+     */
+    private ImageIcon getIcon(String path) {
+        return new ImageIcon(getClass().getResource(path));
+    }
+    
     /**
      * Inicialitza components personalitzats del menú: escalat d’imatges,
      * configuració dels menús i redimensionament dels panells actius.

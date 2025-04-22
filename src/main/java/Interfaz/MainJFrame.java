@@ -89,7 +89,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/images/logo.png")); // NOI18N
+        jLabel1.setIcon(getIcon("/images/Logo.png"));
         jLabel1.setMaximumSize(new java.awt.Dimension(100, 100));
         jLabel1.setMinimumSize(new java.awt.Dimension(1, 1));
 
@@ -167,6 +167,13 @@ public class MainJFrame extends javax.swing.JFrame {
         timer.start();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    /**
+     * Void per obtenir l'imatge com a resource
+     */
+    private ImageIcon getIcon(String path) {
+        return new ImageIcon(getClass().getResource(path));
+    }
+    
     /**
      * Punt d'entrada principal de l'aplicació.
      * 

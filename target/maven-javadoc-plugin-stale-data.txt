@@ -1,0 +1,62 @@
+@options
+@packages
+-classpath
+'/Users/faisu/.m2/repository/at/favre/lib/bcrypt/0.10.2/bcrypt-0.10.2.jar:/Users/faisu/.m2/repository/at/favre/lib/bytes/1.5.0/bytes-1.5.0.jar:/Users/faisu/.m2/repository/org/netbeans/external/AbsoluteLayout/RELEASE230/AbsoluteLayout-RELEASE230.jar:/Users/faisu/.m2/repository/com/miglayout/miglayout/3.7.4/miglayout-3.7.4.jar:/Users/faisu/.m2/repository/unknown/binary/jcalendar-0.8.1/SNAPSHOT/jcalendar-0.8.1-SNAPSHOT.jar:/Users/faisu/.m2/repository/com/google/code/gson/gson/2.11.0/gson-2.11.0.jar:/Users/faisu/.m2/repository/com/google/errorprone/error_prone_annotations/2.27.0/error_prone_annotations-2.27.0.jar:/Users/faisu/.m2/repository/com/microsoft/sqlserver/mssql-jdbc/12.4.2.jre11/mssql-jdbc-12.4.2.jre11.jar'
+-encoding
+'UTF-8'
+-protected
+--release
+21
+-sourcepath
+'/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/src/main/java:/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/target/generated-sources/annotations'
+-author
+-bottom
+'Copyright &#169; 2025. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/target/site/apidocs/doc'
+-docencoding
+'UTF-8'
+-doctitle
+'DI04-AntoniMaqueda - Documentación API'
+-use
+-version
+-windowtitle
+'DI04-AntoniMaqueda - Javadoc'
+Interfaz
+conection
+model
+service
+/Users/faisu/.m2/repository/at/favre/lib/bcrypt/0.10.2/bcrypt-0.10.2.jar = 1676233842000
+/Users/faisu/.m2/repository/at/favre/lib/bytes/1.5.0/bytes-1.5.0.jar = 1614465540000
+/Users/faisu/.m2/repository/org/netbeans/external/AbsoluteLayout/RELEASE230/AbsoluteLayout-RELEASE230.jar = 1726245535000
+/Users/faisu/.m2/repository/com/miglayout/miglayout/3.7.4/miglayout-3.7.4.jar = 1296428189000
+/Users/faisu/.m2/repository/unknown/binary/jcalendar-0.8.1/SNAPSHOT/jcalendar-0.8.1-SNAPSHOT.jar = 1738179229831
+/Users/faisu/.m2/repository/com/google/code/gson/gson/2.11.0/gson-2.11.0.jar = 1716144881000
+/Users/faisu/.m2/repository/com/google/errorprone/error_prone_annotations/2.27.0/error_prone_annotations-2.27.0.jar = 1714146969000
+/Users/faisu/.m2/repository/com/microsoft/sqlserver/mssql-jdbc/12.4.2.jre11/mssql-jdbc-12.4.2.jre11.jar = 1698375188000
+/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/src/main/java/.DS_Store = 1743985758165
+/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/src/main/java = 1744135360885
+/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/target/generated-sources/annotations = 1745342365454
+/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/target/site/apidocs/doc/tag-search-index.js = 1745342368735
+/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/target/site/apidocs/doc/overview-tree.html = 1745342368724
+/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/target/site/apidocs/doc/module-search-index.js = 1745342368734
+/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/target/site/apidocs/doc/index.html = 1745342368725
+/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/target/site/apidocs/doc/package-search-index.js = 1745342368734
+/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/target/site/apidocs/doc/link.svg = 1745342368746
+/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/target/site/apidocs/doc/serialized-form.html = 1745342368701
+/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/target/site/apidocs/doc/index-all.html = 1745342368741
+/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/target/site/apidocs/doc/allpackages-index.html = 1745342368734
+/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/target/site/apidocs/doc/member-search-index.js = 1745342368734
+/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/target/site/apidocs/doc/copy.svg = 1745342368746
+/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/target/site/apidocs/doc/script.js = 1745342368746
+/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/target/site/apidocs/doc/stylesheet.css = 1745342368745
+/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/target/site/apidocs/doc/search-page.js = 1745342368749
+/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/target/site/apidocs/doc/overview-summary.html = 1745342368743
+/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/target/site/apidocs/doc/help-doc.html = 1745342368744
+/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/target/site/apidocs/doc/element-list = 1745342368661
+/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/target/site/apidocs/doc/search.html = 1745342368742
+/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/target/site/apidocs/doc/allclasses-index.html = 1745342368733
+/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/target/site/apidocs/doc/type-search-index.js = 1745342368734
+/Users/faisu/Desktop/DAM/Desenvolupament Interficies/Entrega 4/DI04-AntoniMaqueda/target/site/apidocs/doc/search.js = 1745342368749
