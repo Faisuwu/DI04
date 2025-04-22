@@ -1,4 +1,17 @@
+
+## Aquest document incloeix els readme de: DI04, DI06, DI07.
+
+Están ordenats per ordre, per anar als següents només cal baixar un poc.
+
+
+
+
+
+------------------------------------------------------------------------------------------------------
+
 # DI04 - README - Antoni Maqueda Bestard
+
+Anem per seccions:
 
 ## A. Problemes Inicials
 
@@ -95,6 +108,7 @@ Ja per començar, he tengut que modificar el .jar creat perque tenia una firma d
 Manualment he eliminat les firmes, peró m'he trobat amb que el jdk de windows no em funcionaba correctament. Cercant a la web he trobat una versió que m'ha anat be
  
 Les proves les he fetes amb una máquina virtual de Windows 11, degut a que macOS no era la plataforma per la cuál haviem de desenvolupar el instalador
+Al executar l'aplicació en Windows, m'he adonat que les imatges no es veien bé, ja que NetBeans designer posa les rutes ABSOLUTES del pc quan les insereixes. Ho he canviat i me ha anat perfectament.
 
 Després de tot, el projecte, es a dir l'instalador de l'aplicació funciona correctament complint els punts de l'enunciat.
 
